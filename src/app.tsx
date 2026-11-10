@@ -5,7 +5,6 @@ import { readNight } from './digest/read.js';
 import { readStatus } from './status.js';
 import { Layout } from './views/layout.js';
 import { StatusBoard } from './views/status.js';
-import { readNight } from './digest/read.js';
 import { DigestPage } from './views/digest.js';
 
 const NIGHT_REGEX = /^\d{4}-\d{2}-\d{2}$/;
@@ -41,7 +40,7 @@ export function createApp(config: RigConfig = loadConfig()) {
   app.get('/digest/:night', (c) => {
     const night = c.req.param('night');
     // Validate :night as YYYY-MM-DD
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(night)) {
+    if (!NIGHT_REGEX.test(night)) {
       return c.html(
         <Layout title="digest" lane={lane()}>
           <p>no run log for {night}</p>

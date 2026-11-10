@@ -28,12 +28,8 @@ export function StatusBoard({ status }: { status: Status }) {
                   ok {counts.ok}
                   {' · '}
                   retry {counts.retry}
-                  {counts.fail > 0 && (
-                    <>
-                      {' · '}
-                      <span class="warn">fail {counts.fail}</span>
-                    </>
-                  )}
+                  {' · '}
+                  {counts.fail > 0 ? <span class="warn">fail {counts.fail}</span> : <>fail 0</>}
                 </>
               ) : (
                 <span class="mute">—</span>
